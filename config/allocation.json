@@ -1,0 +1,9 @@
+{
+  "conservative_pct": 0.70,
+  "aggressive_pct": 0.30,
+  "aggressive_cap_pct": 0.50,
+  "skim_trigger_multiplier": 1.40,
+  "skim_fraction": 0.27,
+  "rebalance_interval_days": 90,
+  "min_skim_amount_usd": 10
+}

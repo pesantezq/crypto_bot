@@ -1,0 +1,18 @@
+{
+  "strategy_version": "1.0",
+  "coins": ["SOL-USD", "AVAX-USD", "DOGE-USD"],
+  "rsi_period": 14,
+  "rsi_buy": 25,
+  "rsi_sell": 75,
+  "dip_buy_percent": 2.0,
+  "dip_lookback_hours": 4,
+  "atr_period": 14,
+  "atr_multiplier": 1.5,
+  "atr_baseline_period": 20,
+  "breakout_window": 20,
+  "breakout_min_percent": 0.5,
+  "take_profit_percent": 4.0,
+  "stop_loss_percent": 3.0,
+  "max_hold_hours": 48,
+  "min_trade_interval_minutes": 5
+}

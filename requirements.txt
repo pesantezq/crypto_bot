@@ -1,0 +1,17 @@
+# Core dependencies
+requests>=2.31.0,<3.0.0
+pandas>=2.0.0,<3.0.0
+numpy>=1.24.0,<2.0.0
+python-dotenv>=1.0.0,<2.0.0
+
+# Visualization
+streamlit>=1.28.0,<2.0.0
+matplotlib>=3.7.0,<4.0.0
+
+# Security
+keyring>=24.0.0,<25.0.0
+cryptography>=41.0.0,<42.0.0
+
+# Optional (uncomment if needed)
+# twilio>=8.0.0
+# python-telegram-bot>=20.0

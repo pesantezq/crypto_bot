@@ -1,0 +1,43 @@
+{
+  "sandbox_test": {
+    "description": "Coinbase Sandbox (fake money, real API)",
+    "capital": 1000,
+    "max_daily_loss": 50,
+    "max_total_loss": 100,
+    "max_position_size": 100,
+    "require_confirmation": true,
+    "enable_kill_switch": true,
+    "use_sandbox": true,
+    "sandbox_url": "https://api-public.sandbox.pro.coinbase.com"
+  },
+  "micro_live": {
+    "description": "First real money test - minimal capital",
+    "capital": 10,
+    "max_daily_loss": 3,
+    "max_total_loss": 5,
+    "max_position_size": 5,
+    "require_confirmation": true,
+    "enable_kill_switch": true,
+    "use_sandbox": false
+  },
+  "light_live": {
+    "description": "Increased capital - monitoring phase",
+    "capital": 50,
+    "max_daily_loss": 10,
+    "max_total_loss": 20,
+    "max_position_size": 20,
+    "require_confirmation": false,
+    "enable_kill_switch": true,
+    "use_sandbox": false
+  },
+  "full_live": {
+    "description": "Full deployment - production trading",
+    "capital": 2000,
+    "max_daily_loss": 200,
+    "max_total_loss": 400,
+    "max_position_size": 500,
+    "require_confirmation": false,
+    "enable_kill_switch": true,
+    "use_sandbox": false
+  }
+}
