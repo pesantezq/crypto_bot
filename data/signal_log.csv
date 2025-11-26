@@ -1,0 +1,6 @@
+timestamp,strategy,coin,signal,rsi,ema_fast,ema_slow,atr,price,volume,trigger_met,blocked_reason
+2025-11-26T22:42:53.595593+00:00,conservative,BTC-USD,HOLD,50,90250.52,90250.52,0,90250.52,0,False,demo_mode
+2025-11-26T22:42:54.598548+00:00,conservative,ETH-USD,HOLD,50,3023.91,3023.91,0,3023.91,0,False,demo_mode
+2025-11-26T22:42:55.605468+00:00,aggressive,SOL-USD,HOLD,50,143.03,143.03,0,143.03,0,False,demo_mode
+2025-11-26T22:42:56.915515+00:00,aggressive,AVAX-USD,HOLD,50,14.68,14.68,0,14.68,0,False,demo_mode
+2025-11-26T22:42:57.615967+00:00,aggressive,DOGE-USD,HOLD,50,0.1554,0.1554,0,0.1554,0,False,demo_mode
