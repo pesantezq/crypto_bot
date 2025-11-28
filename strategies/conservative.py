@@ -1,89 +1,83 @@
 """
-Conservative Strategy - BTC-USD, ETH-USD
-Lower risk, higher allocation (70%)
+Conservative Trading Strategy
+BTC and ETH with stable allocation (70%)
 """
 
 import json
-from pathlib import Path
-from services.indicators import Indicators
+import os
+from typing import Dict, Optional
+from services.coinbase_api import CoinbaseAPI
+from services.logger import Logger
 
 
 class ConservativeStrategy:
-    """Conservative trading strategy"""
+    """Conservative strategy for BTC/ETH trading."""
     
-    def __init__(self, logger, price_api):
-        """Initialize strategy"""
-        self.logger = logger
-        self.price_api = price_api
+    def __init__(self, paper_mode: bool = False, initial_capital: float = 1000, phase_config: Optional[Dict] = None):
+        """
+        Initialize conservative strategy.
+        
+        Args:
+            paper_mode: If True, simulate trades
+            initial_capital: Starting capital for this strategy
+            phase_config: Phase configuration
+        """
+        self.paper_mode = paper_mode
+        self.initial_capital = initial_capital
+        self.phase_config = phase_config or {}
         
         # Load settings
-        with open(Path("config") / "settings_conservative.json", 'r') as f:
-            self.settings = json.load(f)
+        self.settings = self._load_settings()
         
-        self.coins = self.settings['coins']
-        self.indicators = Indicators()
+        # Initialize services
+        self.coinbase = CoinbaseAPI(paper_mode=paper_mode)
+        self.logger = Logger()
         
-    def evaluate_all(self):
-        """Evaluate all coins and return signals"""
-        signals = []
+        # Set paper balance if in paper mode
+        if paper_mode:
+            self.coinbase.set_paper_balance("USD", initial_capital)
         
-        for coin in self.coins:
-            signal = self.evaluate(coin)
-            signals.append(signal)
-        
-        return signals
+        print(f"✅ Conservative Strategy initialized (${initial_capital:,.2f})")
     
-    def evaluate(self, coin):
-        """Evaluate a single coin"""
-        # Get current price
-        price = self.price_api.get_price(coin)
+    def _load_settings(self) -> Dict:
+        """Load strategy settings from JSON."""
+        settings_path = os.path.join('config', 'settings_conservative.json')
+        if os.path.exists(settings_path):
+            try:
+                with open(settings_path, 'r') as f:
+                    return json.load(f)
+            except:
+                pass
         
-        if not price:
-            return self._hold_signal(coin, 0)
-        
-        # For demo purposes, generate hold signal
-        # Real implementation would:
-        # 1. Fetch historical prices
-        # 2. Calculate RSI, EMA
-        # 3. Check all buy/sell triggers
-        # 4. Return appropriate signal
-        
-        signal = {
-            'coin': coin,
-            'action': 'HOLD',
-            'price': price,
-            'amount_usd': 0,
-            'rsi': 50,
-            'ema_fast': price,
-            'ema_slow': price,
-            'atr': 0,
-            'volume': 0,
-            'reason': 'Demo mode - no trades'
-        }
-        
-        # Log signal
-        self.logger.log_signal(
-            strategy='conservative',
-            coin=coin,
-            signal=signal['action'],
-            rsi=signal['rsi'],
-            ema_fast=signal['ema_fast'],
-            ema_slow=signal['ema_slow'],
-            atr=signal['atr'],
-            price=price,
-            volume=signal['volume'],
-            trigger_met=False,
-            blocked_reason="demo_mode"
-        )
-        
-        return signal
-    
-    def _hold_signal(self, coin, price):
-        """Generate hold signal"""
+        # Default settings
         return {
-            'coin': coin,
-            'action': 'HOLD',
-            'price': price,
-            'amount_usd': 0,
-            'reason': 'No triggers met'
+            "strategy_version": "1.0",
+            "coins": ["BTC-USD", "ETH-USD"],
+            "rsi_buy": 30,
+            "rsi_sell": 70,
+            "dca_dip_percent": 2.5,
+            "take_profit_percent": 8.0,
+            "stop_loss_percent": 5.0
         }
+    
+    def execute(self):
+        """Execute trading strategy."""
+        print("\n📊 Running Conservative Strategy...")
+        
+        # Get coins to trade
+        coins = self.settings.get("coins", ["BTC-USD", "ETH-USD"])
+        
+        for coin in coins:
+            try:
+                # Get current price
+                price = self.coinbase.get_product_price(coin)
+                if price:
+                    print(f"   {coin}: ${price:,.2f}")
+                
+                # Strategy logic would go here
+                # For now, just log the check
+                
+            except Exception as e:
+                print(f"   ❌ Error checking {coin}: {e}")
+        
+        print("   ✅ Conservative strategy execution complete")

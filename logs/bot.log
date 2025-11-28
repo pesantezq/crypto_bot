@@ -1,0 +1,3 @@
+[2025-11-28 02:55:32 UTC] ERROR [ERROR]: CYCLE_ERROR - PriceAPI.get_historical_prices() got an unexpected keyword argument 'hours'
+[2025-11-28 02:59:59 UTC] ERROR [ERROR]: CYCLE_ERROR - PriceAPI.get_historical_prices() got an unexpected keyword argument 'hours'
+[2025-11-28 03:01:08 UTC] ERROR [ERROR]: CYCLE_ERROR - 'atr_breakout_multiplier'

@@ -1,1 +1,40 @@
 timestamp,error_type,severity,message,traceback,recovery_action
+2025-11-28T02:55:32.174238+00:00,CYCLE_ERROR,ERROR,PriceAPI.get_historical_prices() got an unexpected keyword argument 'hours',"Traceback (most recent call last):
+  File ""C:\PersonalWork\crypto_bot\main.py"", line 396, in _run_trading_cycle
+    conservative_signals = self.conservative.evaluate_all()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\PersonalWork\crypto_bot\strategies\conservative.py"", line 55, in evaluate_all
+    signal = self.evaluate(coin)
+             ^^^^^^^^^^^^^^^^^^^
+  File ""C:\PersonalWork\crypto_bot\strategies\conservative.py"", line 75, in evaluate
+    historical_prices = self.price_api.get_historical_prices(coin, hours=48)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceAPI.get_historical_prices() got an unexpected keyword argument 'hours'
+",
+2025-11-28T02:59:59.564816+00:00,CYCLE_ERROR,ERROR,PriceAPI.get_historical_prices() got an unexpected keyword argument 'hours',"Traceback (most recent call last):
+  File ""C:\PersonalWork\crypto_bot\main.py"", line 396, in _run_trading_cycle
+    conservative_signals = self.conservative.evaluate_all()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\PersonalWork\crypto_bot\strategies\conservative.py"", line 55, in evaluate_all
+    signal = self.evaluate(coin)
+             ^^^^^^^^^^^^^^^^^^^
+  File ""C:\PersonalWork\crypto_bot\strategies\conservative.py"", line 75, in evaluate
+    historical_prices = self.price_api.get_historical_prices(coin, hours=48)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PriceAPI.get_historical_prices() got an unexpected keyword argument 'hours'
+",
+2025-11-28T03:01:08.822630+00:00,CYCLE_ERROR,ERROR,'atr_breakout_multiplier',"Traceback (most recent call last):
+  File ""C:\PersonalWork\crypto_bot\main.py"", line 400, in _run_trading_cycle
+    aggressive_signals = self.aggressive.evaluate_all()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\PersonalWork\crypto_bot\strategies\aggressive.py"", line 56, in evaluate_all
+    signal = self.evaluate(coin)
+             ^^^^^^^^^^^^^^^^^^^
+  File ""C:\PersonalWork\crypto_bot\strategies\aggressive.py"", line 107, in evaluate
+    buy_signal = self._check_buy_conditions(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""C:\PersonalWork\crypto_bot\strategies\aggressive.py"", line 144, in _check_buy_conditions
+    if atr_ratio >= self.settings['atr_breakout_multiplier']:
+                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'atr_breakout_multiplier'
+",

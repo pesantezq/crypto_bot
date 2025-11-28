@@ -12,7 +12,7 @@
   },
   "micro_live": {
     "description": "First real money test - minimal capital",
-    "capital": 10,
+    "capital": 50,
     "max_daily_loss": 3,
     "max_total_loss": 5,
     "max_position_size": 5,

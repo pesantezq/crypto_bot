@@ -1,0 +1,16 @@
+{
+  "strategy_version": "1.0",
+  "coins": ["BTC-USD", "ETH-USD"],
+  "rsi_period": 14,
+  "rsi_buy": 30,
+  "rsi_sell": 70,
+  "ema_fast": 9,
+  "ema_slow": 21,
+  "dca_dip_percent": 2.5,
+  "dca_dip_lookback_hours": 24,
+  "volume_spike_multiplier": 1.5,
+  "volume_spike_period": 20,
+  "take_profit_percent": 8.0,
+  "stop_loss_percent": 5.0,
+  "min_trade_interval_minutes": 5
+}

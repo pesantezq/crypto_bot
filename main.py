@@ -31,8 +31,8 @@ from services.risk import RiskManager
 from services.credentials import CredentialManager
 from services.price_api import PriceAPI
 from services.coinbase_api import CoinbaseAPI
-from strategies.conservative import ConservativeStrategy
-from strategies.aggressive import AggressiveStrategy
+from strategies.conservative_old import ConservativeStrategy
+from strategies.aggressive_old import AggressiveStrategy
 
 
 class CryptoBot:

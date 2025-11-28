@@ -1,5 +1,6 @@
 """
 Technical Indicators - RSI, EMA, ATR, Volume analysis
+Updated with full breakout detection and simplified ATR
 """
 
 import numpy as np
@@ -44,33 +45,78 @@ class Indicators:
         return ema
     
     @staticmethod
-    def calculate_atr(high_prices, low_prices, close_prices, period=14):
-        """Calculate ATR (Average True Range)"""
-        if len(close_prices) < period + 1:
+    def calculate_atr(prices, period=14):
+        """
+        Calculate ATR (Average True Range) - Simplified version
+        Uses price ranges as approximation when OHLC data not available
+        
+        Args:
+            prices: List of closing prices
+            period: Lookback period (default: 14)
+        
+        Returns:
+            float: ATR value
+        """
+        if len(prices) < period + 1:
             return 0
         
+        # Calculate true ranges using price differences
         tr_list = []
-        for i in range(1, len(close_prices)):
-            tr = max(
-                high_prices[i] - low_prices[i],
-                abs(high_prices[i] - close_prices[i-1]),
-                abs(low_prices[i] - close_prices[i-1])
-            )
+        for i in range(1, len(prices)):
+            # Simplified TR: just use absolute price changes
+            tr = abs(prices[i] - prices[i-1])
             tr_list.append(tr)
         
+        # Average True Range
         atr = np.mean(tr_list[-period:])
         return atr
     
     @staticmethod
-    def detect_breakout(prices, window=20):
-        """Detect price breakout above window high"""
+    def detect_breakout(prices, window=20, min_percent=0.5):
+        """
+        Detect price breakout above window high
+        
+        Args:
+            prices: List of historical prices
+            window: Lookback window for high detection (default: 20)
+            min_percent: Minimum percent above high to qualify (default: 0.5%)
+        
+        Returns:
+            dict: {
+                'is_breakout': bool,
+                'current_price': float,
+                'window_high': float,
+                'percent_above': float
+            }
+        """
         if len(prices) < window + 1:
-            return False
+            return {
+                'is_breakout': False,
+                'current_price': 0,
+                'window_high': 0,
+                'percent_above': 0
+            }
         
         current_price = prices[-1]
         window_high = max(prices[-window-1:-1])
         
-        return current_price > window_high
+        if window_high == 0:
+            return {
+                'is_breakout': False,
+                'current_price': current_price,
+                'window_high': 0,
+                'percent_above': 0
+            }
+        
+        percent_above = ((current_price - window_high) / window_high) * 100
+        is_breakout = percent_above >= min_percent
+        
+        return {
+            'is_breakout': is_breakout,
+            'current_price': current_price,
+            'window_high': window_high,
+            'percent_above': percent_above
+        }
     
     @staticmethod
     def calculate_volume_ratio(volumes, period=20):

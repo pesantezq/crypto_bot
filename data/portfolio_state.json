@@ -1,10 +1,10 @@
 {
   "initial_capital": 10000,
-  "cash": 10000,
+  "cash": 10000.0,
   "positions": {},
   "conservative_value": 7000.0,
   "aggressive_value": 3000.0,
-  "total_trades": 0,
+  "total_trades": 2,
   "created_at": "2025-11-26T22:41:55.632881+00:00",
-  "last_updated": "2025-11-27T08:08:50.263504+00:00"
+  "last_updated": "2025-11-28T04:03:45.228572+00:00"
 }
